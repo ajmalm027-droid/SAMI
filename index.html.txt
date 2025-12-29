@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* LOGIN PAGE STYLE */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #f58529, #d748b6, #8a3ab9);
+            color: #fff;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            width: 300px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f58529;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background: #d748b6;
+        }
+
+        .login-container .sign-up {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-container .sign-up a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* PORTFOLIO WEBSITE STYLE */
+        .portfolio {
+            display: none;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #f58529, #d748b6, #8a3ab9);
+            color: #fff;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #0077cc;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div class="login-container" id="loginContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="sign-up">
+            <p>Don't have an account? <a href="#" id="signUpLink">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO WEBSITE (Hidden Initially) -->
+    <div class="portfolio" id="portfolioPage">
+        <header>
+            <h1>Abdul Sami</h1>
+            <p>Web Developer | Designer | Problem Solver</p>
+        </header>
+
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I'm Abdul Sami, a passionate web developer with a knack for creating intuitive and responsive websites. I specialize in front-end development and enjoy learning new technologies to create user-friendly web applications.</p>
+        </section>
+
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div>
+                <h3>Project One</h3>
+                <p>Web application for task management with an elegant user interface.</p>
+            </div>
+            <div>
+                <h3>Project Two</h3>
+                <p>A responsive portfolio website showcasing my work and skills.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>If you want to get in touch, feel free to reach out!</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Abdul Sami | All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Check if the user is already logged in from localStorage
+        window.onload = function() {
+            const loggedIn = localStorage.getItem('loggedIn');
+            if (loggedIn === 'true') {
+                // If user is logged in, show the portfolio page
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('portfolioPage').style.display = 'block';
+            }
+        };
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basic validation (feel free to expand)
+            if (username === 'abdulsami' && password === '1234' && email === 'abdul.sami@example.com') {
+                // Save login state in localStorage
+                localStorage.setItem('loggedIn', 'true');
+                
+                // Hide login page and show the portfolio
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('portfolioPage').style.display = 'block';
+            } else {
+                alert('Invalid credentials, please try again!');
+            }
+        });
+
+        // Sign Up link (for demonstration purposes, you can expand it)
+        document.getElementById('signUpLink').addEventListener('click', function() {
+            alert("Sign up functionality is not implemented yet.");
+        });
+    </script>
+
+</body>
+</html>
